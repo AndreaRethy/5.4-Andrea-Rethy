@@ -1,3 +1,6 @@
+const mongoose = require('mongoose');
+mongoose.connect("mongodb://localhost/restaurantsdb");
+
 /*
 1. Escriu una consulta per mostrar el restaurant_id, name, borough i cuisine de tots els documents en la col·lecció Restaurants.
 2. Escriu una consulta per mostrar el restaurant_id, name, borough i cuisine, però excloent el camp _id per tots els documents en la col·lecció Restaurants.
