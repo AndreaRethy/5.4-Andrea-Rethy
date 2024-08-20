@@ -3,7 +3,40 @@ const db = monk('localhost/restaurantsdb');
 const restaurants = db.get('Restaurants');
 
 /* 1. Write a query to display all documents in the Restaurants collection. */
-restaurants.find({})
+// restaurants.find({})
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+/* 2. Write a query to display the restaurant_id, name, borough, and cuisine of all documents in the Restaurants collection. */
+// restaurants.find({}, { fields: { 
+//     restaurant_id: 1, 
+//     name: 1, 
+//     borough: 1, 
+//     cuisine: 1 } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+  /* 3. Write a query to display the restaurant_id, name, borough, and cuisine, but excluding the _id field for all documents in the Restaurants collection. */
+  restaurants.find({}, { fields: { 
+    restaurant_id: 1, 
+    name: 1, 
+    borough: 1, 
+    cuisine: 1,
+    _id: 0  } })
   .then(docs => {
     console.log(docs);
   })
@@ -14,11 +47,7 @@ restaurants.find({})
     db.close();
   });
 
-/* 2. Write a query to display the restaurant_id, name, borough, and cuisine of all documents in the Restaurants collection. */
-
-
 /*
-3. Escriu una consulta per mostrar el restaurant_id, name, borough i cuisine, però excloent el camp _id per tots els documents en la col·lecció Restaurants.
 4. Escriu una consulta per mostrar restaurant_id, name, borough i zip code, però excloent el camp _id per tots els documents en la col·lecció Restaurants.
 5. Escriu una consulta per mostrar tots els restaurants que estan en el Bronx.
 6. Escriu una consulta per mostrar els primers 5 restaurants que estan en el Bronx.
