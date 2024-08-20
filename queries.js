@@ -82,7 +82,46 @@ const restaurants = db.get('Restaurants');
 
 
 /* 6. Write a query to show the first 5 restaurants that are in the Bronx. */
-restaurants.find({ borough: 'Bronx'}, { limit: 5 } )
+// restaurants.find({ borough: 'Bronx'}, { limit: 5 } )
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+/* 7. Write a query to display all 5 restaurants after skipping the first 5 that are in the Bronx. */
+//   restaurants.find({ borough: 'Bronx'}, { limit: 5, skip: 5 } )
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+  /* 8. Write a query to find the restaurants that have a score greater than 90. */
+//   restaurants.find({ "grades.score": { $gt: 90 } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+/* 9. Write a query to find the restaurants that have a score greater than 80 but less than 100. */
+  restaurants.find({ "grades.score": { $gt: 80, $lt: 100 } })
   .then(docs => {
     console.log(docs);
   })
@@ -93,12 +132,7 @@ restaurants.find({ borough: 'Bronx'}, { limit: 5 } )
     db.close();
   });
 
-
-
 /*
-7. Escriu una consulta per mostrar els 5 restaurants després de saltar els primers 5 que siguin del Bronx.
-8. Escriu una consulta per trobar els restaurants que tenen algun score més gran de 90.
-9. Escriu una consulta per trobar els restaurants que tenen un score més gran que 80 però menys que 100.
 10. Escriu una consulta per trobar els restaurants que estan situats en una longitud inferior a -95.754168.
 11. Escriu una consulta de MongoDB per a trobar els restaurants que no cuinen menjar 'American ' i tenen algun score superior a 70 i longitud inferior a -65.754168.
 12. Escriu una consulta per trobar els restaurants que no preparen menjar 'American' i tenen algun score superior a 70 i que, a més, es localitzen en longituds inferiors a -65.754168. **Nota**: Fes aquesta consulta sense utilitzar operador $and.
