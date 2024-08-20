@@ -14,6 +14,7 @@ const restaurants = db.get('Restaurants');
 //     db.close();
 //   });
 
+
 /* 2. Write a query to display the restaurant_id, name, borough, and cuisine of all documents in the Restaurants collection. */
 // restaurants.find({}, { fields: { 
 //     restaurant_id: 1, 
@@ -29,6 +30,7 @@ const restaurants = db.get('Restaurants');
 //   .finally(() => {
 //     db.close();
 //   });
+
 
   /* 3. Write a query to display the restaurant_id, name, borough, and cuisine, but excluding the _id field for all documents in the Restaurants collection. */
 //   restaurants.find({}, { fields: { 
@@ -47,13 +49,40 @@ const restaurants = db.get('Restaurants');
 //     db.close();
 //   });
 
+
   /* 4. Write a query to display restaurant_id, name, borough, and zip code, but excluding the _id field for all documents in the Restaurants collection. */
-  restaurants.find({}, { fields: { 
-    restaurant_id: 1, 
-    name: 1, 
-    borough: 1, 
-    'address.zipcode': 1,
-    _id: 0  } })
+//   restaurants.find({}, { fields: { 
+//     restaurant_id: 1, 
+//     name: 1, 
+//     borough: 1, 
+//     'address.zipcode': 1,
+//     _id: 0  } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+/* 5. Write a query to show all the restaurants that are in the Bronx. */
+// restaurants.find({ borough: 'Bronx' })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+/* 6. Write a query to show the first 5 restaurants that are in the Bronx. */
+restaurants.find({ borough: 'Bronx'}, { limit: 5 } )
   .then(docs => {
     console.log(docs);
   })
@@ -65,9 +94,8 @@ const restaurants = db.get('Restaurants');
   });
 
 
+
 /*
-5. Escriu una consulta per mostrar tots els restaurants que estan en el Bronx.
-6. Escriu una consulta per mostrar els primers 5 restaurants que estan en el Bronx.
 7. Escriu una consulta per mostrar els 5 restaurants després de saltar els primers 5 que siguin del Bronx.
 8. Escriu una consulta per trobar els restaurants que tenen algun score més gran de 90.
 9. Escriu una consulta per trobar els restaurants que tenen un score més gran que 80 però menys que 100.
