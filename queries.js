@@ -394,8 +394,27 @@ const restaurants = db.get('Restaurants');
 
 
 /* 31. Write a query to find the restaurant name, borough, longitude, latitude and cuisine for those restaurants that contain 'mon' somewhere in their name. */
+// restaurants.find({
+//   "name": { $regex: /mon/ }
+// }, { fields: { 
+//     name: 1, 
+//     borough: 1, 
+//     cuisine: 1,
+//     "longitude": { $arrayElemAt: ["$address.coord", 0] },
+//     "latitude": { $arrayElemAt: ["$address.coord", 1] } } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+/* 32. Write a query to find the restaurant name, borough, longitude, latitude and cuisine for those restaurants that contain 'Mad' as the first three letters of their name. */
 restaurants.find({
-  "name": { $regex: /mon/ }
+  "name": { $regex: /^Mad/ }
 }, { fields: { 
     name: 1, 
     borough: 1, 
@@ -411,8 +430,6 @@ restaurants.find({
   .finally(() => {
     db.close();
   });
-
-/* 32. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'Mad' com a primeres tres lletres del seu name. */
 
 /*
 21. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que preparen marisc ('seafood') excepte si són 'American ', 'Chinese' o el name del restaurant comença amb lletres 'Wil'.
