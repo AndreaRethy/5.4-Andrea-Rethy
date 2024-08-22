@@ -237,25 +237,41 @@ const restaurants = db.get('Restaurants');
 
 
 /* 16. Write a query to find the restaurant_id, name, borough and cuisine for those restaurants that contain 'Reg' anywhere in their name. */
-restaurants.find({
-  "name": { $regex: /Reg/ }
-}, { fields: { 
-    restaurant_id: 1, 
-    name: 1, 
-    borough: 1, 
-    cuisine: 1 } })
-  .then(docs => {
-    console.log(docs);
-  })
-  .catch(err => {
-    console.error(err);
-  })
-  .finally(() => {
-    db.close();
-  });
+// restaurants.find({
+//   "name": { $regex: /Reg/ }
+// }, { fields: { 
+//     restaurant_id: 1, 
+//     name: 1, 
+//     borough: 1, 
+//     cuisine: 1 } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+  /* 17. Write a query to find restaurants that belong to the Bronx and prepare American or Chinese dishes. */
+  restaurants.find({
+    "borough": 'Bronx',
+   "cuisine": { $in: [/American/i, /Chinese/i] } 
+ })
+ .then(docs => {
+   console.log(docs);
+ })
+ .catch(err => {
+   console.error(err);
+ })
+ .finally(() => {
+   db.close();
+ });
+
 
 /*
-17. Escriu una consulta per trobar els restaurants que pertanyen al Bronx i preparen plats Americans o xinesos.
 18. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per aquells restaurants que pertanyen a Staten Island, Queens, Bronx o Brooklyn.
 19. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que NO pertanyen a Staten Island, Queens, Bronx o Brooklyn.
 20. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que aconsegueixin una nota menor que 10.
