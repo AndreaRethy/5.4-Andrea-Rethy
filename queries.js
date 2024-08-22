@@ -378,23 +378,39 @@ const restaurants = db.get('Restaurants');
 
 
 /* 28. Write a query to find out if the addresses contain the street. */
+// restaurants.find({
+//   "address.street": { $exists: true }
+// }, {
+// })
+// .then(docs => {
+//   console.log(docs);
+// })
+// .catch(err => {
+//   console.error('Query Error:', err);
+// })
+// .finally(() => {
+//   db.close();
+// });
+
+
+/* 31. Write a query to find the restaurant name, borough, longitude, latitude and cuisine for those restaurants that contain 'mon' somewhere in their name. */
 restaurants.find({
-  "address.street": { $exists: true }
-}, {
-})
-.then(docs => {
-  console.log(docs);
-})
-.catch(err => {
-  console.error('Query Error:', err);
-})
-.finally(() => {
-  db.close();
-});
-
-
-/* 31. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'mon' en algun lloc del seu name. */
-
+  "name": { $regex: /mon/ }
+}, { fields: { 
+    name: 1, 
+    borough: 1, 
+    cuisine: 1,
+    "longitude": { $arrayElemAt: ["$address.coord", 0] },
+    "latitude": { $arrayElemAt: ["$address.coord", 1] } } })
+  .then(docs => {
+    console.log(docs);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+  .finally(() => {
+    db.close();
+  });
 
 /* 32. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'Mad' com a primeres tres lletres del seu name. */
 
