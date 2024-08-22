@@ -256,22 +256,39 @@ const restaurants = db.get('Restaurants');
 
 
   /* 17. Write a query to find restaurants that belong to the Bronx and prepare American or Chinese dishes. */
-  restaurants.find({
-    "borough": 'Bronx',
-   "cuisine": { $in: [/American/i, /Chinese/i] } 
- })
- .then(docs => {
-   console.log(docs);
- })
- .catch(err => {
-   console.error(err);
- })
- .finally(() => {
-   db.close();
- });
+//   restaurants.find({
+//    "borough": 'Bronx',
+//    "cuisine": { $in: [/American/i, /Chinese/i] } 
+//  })
+//  .then(docs => {
+//    console.log(docs);
+//  })
+//  .catch(err => {
+//    console.error(err);
+//  })
+//  .finally(() => {
+//    db.close();
+//  });
 
 
- 
+ /* 18. Write a query to find the restaurant_id, name, borough, and cuisine for those restaurants that belong to Staten Island, Queens, Bronx, or Brooklyn. */
+restaurants.find({
+  "borough": { $in: [/Staten Island/i, /Queens/i, /Bronx/i, /Brooklyn/i] }
+}, { fields: { 
+    restaurant_id: 1, 
+    name: 1, 
+    borough: 1, 
+    cuisine: 1 } })
+  .then(docs => {
+    console.log(docs);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+  .finally(() => {
+    db.close();
+  });
+
 
 /*
 19. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que NO pertanyen a Staten Island, Queens, Bronx o Brooklyn.
