@@ -182,20 +182,22 @@ const restaurants = db.get('Restaurants');
 
 
 /* 13. Write a query to find restaurants that do not prepare 'American' food, have an 'A' grade and do not belong to Brooklyn. The document should be displayed according to cuisine in descending order. */
-//   restaurants.find({
-//     "borough": { $not: /Brooklyn/i },
-//     "grades.grade": 'A',
-//     "cuisine": { $not: /American/i } 
-//  })
-//  .then(docs => {
-//    console.log(docs);
-//  })
-//  .catch(err => {
-//    console.error(err);
-//  })
-//  .finally(() => {
-//    db.close();
-//  });
+restaurants.find({
+  "borough": { $not: /Brooklyn/i },
+  "grades.grade": 'A',
+  "cuisine": { $not: /American/i }
+}, {
+  sort: { "cuisine": -1 }
+})
+.then(docs => {
+  console.log(docs);
+})
+.catch(err => {
+  console.error('Query Error:', err);
+})
+.finally(() => {
+  db.close();
+});
 
 
 /* 14. Write a query to find the restaurant_id, name, borough, and cuisine for those restaurants that contain 'Wil' in the first three letters of their name. */
@@ -310,22 +312,22 @@ const restaurants = db.get('Restaurants');
 
 
 /* 20. Write a query to find the restaurant_id, name, borough, and cuisine for those restaurants that score less than 10. */
-restaurants.find({
-  "grades": { $elemMatch: { "score": { $lt: 10 } } }
-}, { fields: { 
-    restaurant_id: 1, 
-    name: 1, 
-    borough: 1, 
-    cuisine: 1 } })
-  .then(docs => {
-    console.log(docs);
-  })
-  .catch(err => {
-    console.error(err);
-  })
-  .finally(() => {
-    db.close();
-  });
+// restaurants.find({
+//   "grades": { $elemMatch: { "score": { $lt: 10 } } }
+// }, { fields: { 
+//     restaurant_id: 1, 
+//     name: 1, 
+//     borough: 1, 
+//     cuisine: 1 } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
 
 
 /*
