@@ -146,24 +146,43 @@ const restaurants = db.get('Restaurants');
 
 
   /* 11. Write a MongoDB query to find restaurants that do not cook 'American' food and have a score greater than 70 and longitude less than -65.754168.*/
-  restaurants.find({
-     "address.coord.0": { $lt: -65.754168 },
-     "grades.score": { $gt: 90 },
-     "cuisine": { $not: /American/i } 
-  })
-  .then(docs => {
-    console.log(docs);
-  })
-  .catch(err => {
-    console.error(err);
-  })
-  .finally(() => {
-    db.close();
-  });
+  // restaurants.find({
+  //   $and: [
+  //       { "address.coord.0": { $lt: -65.754168 } },
+  //       { "grades.score": { $gt: 90 } },
+  //       { "cuisine": { $not: /American/i } }
+  //   ]
+  // })
+  // .then(docs => {
+  //   console.log(docs);
+  // })
+  // .catch(err => {
+  //   console.error(err);
+  // })
+  // .finally(() => {
+  //   db.close();
+  // });
+
+
+  /* 12. Write a query to find the restaurants that do not prepare 'American' food and have a score higher than 70 and which, moreover, are located in longitudes lower than -65.754168.**Note**: Do this query without using the $and operator. */
+//   restaurants.find({
+//     "address.coord.0": { $lt: -65.754168 },
+//     "grades.score": { $gt: 70 },
+//     "cuisine": { $not: /American/i } 
+//  })
+//  .then(docs => {
+//    console.log(docs);
+//  })
+//  .catch(err => {
+//    console.error(err);
+//  })
+//  .finally(() => {
+//    db.close();
+//  });
+
 
 
 /*
-12. Escriu una consulta per trobar els restaurants que no preparen menjar 'American' i tenen algun score superior a 70 i que, a més, es localitzen en longituds inferiors a -65.754168. **Nota**: Fes aquesta consulta sense utilitzar operador $and.
 13. Escriu una consulta per trobar els restaurants que no preparen menjar 'American ', tenen alguna nota 'A' i no pertanyen a Brooklyn. S'ha de mostrar el document segons la cuisine en ordre descendent.
 14. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'Wil' en les tres primeres lletres en el seu nom.
 15. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'ces' en les últimes tres lletres en el seu nom.
