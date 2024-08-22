@@ -133,7 +133,24 @@ const restaurants = db.get('Restaurants');
   // });
 
   /* 10. Write a query to find restaurants that are located at a longitude less than -95.754168. */
-  restaurants.find({ "address.coord.0": { $lt: -95.754168 } })
+  // restaurants.find({ "address.coord.0": { $lt: -95.754168 } })
+  // .then(docs => {
+  //   console.log(docs);
+  // })
+  // .catch(err => {
+  //   console.error(err);
+  // })
+  // .finally(() => {
+  //   db.close();
+  // });
+
+
+  /* 11. Write a MongoDB query to find restaurants that do not cook 'American' food and have a score greater than 70 and longitude less than -65.754168.*/
+  restaurants.find({
+     "address.coord.0": { $lt: -65.754168 },
+     "grades.score": { $gt: 90 },
+     "cuisine": { $not: /American/i } 
+  })
   .then(docs => {
     console.log(docs);
   })
@@ -144,8 +161,8 @@ const restaurants = db.get('Restaurants');
     db.close();
   });
 
+
 /*
-11. Escriu una consulta de MongoDB per a trobar els restaurants que no cuinen menjar 'American ' i tenen algun score superior a 70 i longitud inferior a -65.754168.
 12. Escriu una consulta per trobar els restaurants que no preparen menjar 'American' i tenen algun score superior a 70 i que, a més, es localitzen en longituds inferiors a -65.754168. **Nota**: Fes aquesta consulta sense utilitzar operador $and.
 13. Escriu una consulta per trobar els restaurants que no preparen menjar 'American ', tenen alguna nota 'A' i no pertanyen a Brooklyn. S'ha de mostrar el document segons la cuisine en ordre descendent.
 14. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'Wil' en les tres primeres lletres en el seu nom.
