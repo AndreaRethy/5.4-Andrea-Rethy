@@ -121,7 +121,19 @@ const restaurants = db.get('Restaurants');
 
 
 /* 9. Write a query to find the restaurants that have a score greater than 80 but less than 100. */
-  restaurants.find({ "grades.score": { $gt: 80, $lt: 100 } })
+  // restaurants.find({ "grades.score": { $gt: 80, $lt: 100 } })
+  // .then(docs => {
+  //   console.log(docs);
+  // })
+  // .catch(err => {
+  //   console.error(err);
+  // })
+  // .finally(() => {
+  //   db.close();
+  // });
+
+  /* 10. Write a query to find restaurants that are located at a longitude less than -95.754168. */
+  restaurants.find({ "address.coord.0": { $lt: -95.754168 } })
   .then(docs => {
     console.log(docs);
   })
@@ -133,7 +145,6 @@ const restaurants = db.get('Restaurants');
   });
 
 /*
-10. Escriu una consulta per trobar els restaurants que estan situats en una longitud inferior a -95.754168.
 11. Escriu una consulta de MongoDB per a trobar els restaurants que no cuinen menjar 'American ' i tenen algun score superior a 70 i longitud inferior a -65.754168.
 12. Escriu una consulta per trobar els restaurants que no preparen menjar 'American' i tenen algun score superior a 70 i que, a més, es localitzen en longituds inferiors a -65.754168. **Nota**: Fes aquesta consulta sense utilitzar operador $and.
 13. Escriu una consulta per trobar els restaurants que no preparen menjar 'American ', tenen alguna nota 'A' i no pertanyen a Brooklyn. S'ha de mostrar el document segons la cuisine en ordre descendent.
