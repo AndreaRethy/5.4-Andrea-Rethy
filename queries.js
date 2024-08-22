@@ -217,9 +217,28 @@ const restaurants = db.get('Restaurants');
 //   });
 
 
-/* 15. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'ces' en les últimes tres lletres en el seu nom. */
+/* 15. Write a query to find the restaurant_id, name, borough and cuisine for those restaurants that contain 'ces' in the last three letters of their name. */
+// restaurants.find({
+//   "name": { $regex: /ces$/ }
+// }, { fields: { 
+//     restaurant_id: 1, 
+//     name: 1, 
+//     borough: 1, 
+//     cuisine: 1 } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
+
+
+/* 16. Write a query to find the restaurant_id, name, borough and cuisine for those restaurants that contain 'Reg' anywhere in their name. */
 restaurants.find({
-  "name": { $regex: /ces$/ }
+  "name": { $regex: /Reg/ }
 }, { fields: { 
     restaurant_id: 1, 
     name: 1, 
@@ -235,10 +254,7 @@ restaurants.find({
     db.close();
   });
 
-
-
 /*
-16. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'Reg' en qualsevol lloc del seu nom.
 17. Escriu una consulta per trobar els restaurants que pertanyen al Bronx i preparen plats Americans o xinesos.
 18. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per aquells restaurants que pertanyen a Staten Island, Queens, Bronx o Brooklyn.
 19. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que NO pertanyen a Staten Island, Queens, Bronx o Brooklyn.
