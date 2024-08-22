@@ -272,26 +272,43 @@ const restaurants = db.get('Restaurants');
 
 
  /* 18. Write a query to find the restaurant_id, name, borough, and cuisine for those restaurants that belong to Staten Island, Queens, Bronx, or Brooklyn. */
-restaurants.find({
-  "borough": { $in: [/Staten Island/i, /Queens/i, /Bronx/i, /Brooklyn/i] }
-}, { fields: { 
-    restaurant_id: 1, 
-    name: 1, 
-    borough: 1, 
-    cuisine: 1 } })
-  .then(docs => {
-    console.log(docs);
-  })
-  .catch(err => {
-    console.error(err);
-  })
-  .finally(() => {
-    db.close();
-  });
+// restaurants.find({
+//   "borough": { $in: [/Staten Island/i, /Queens/i, /Bronx/i, /Brooklyn/i] }
+// }, { fields: { 
+//     restaurant_id: 1, 
+//     name: 1, 
+//     borough: 1, 
+//     cuisine: 1 } })
+//   .then(docs => {
+//     console.log(docs);
+//   })
+//   .catch(err => {
+//     console.error(err);
+//   })
+//   .finally(() => {
+//     db.close();
+//   });
 
+
+  /* 19. Write a query to find the restaurant_id, name, borough, and cuisine for those restaurants that are NOT in Staten Island, Queens, Bronx, or Brooklyn. */
+  restaurants.find({
+    "borough": { $nin: [/Staten Island/i, /Queens/i, /Bronx/i, /Brooklyn/i] }
+  }, { fields: { 
+      restaurant_id: 1, 
+      name: 1, 
+      borough: 1, 
+      cuisine: 1 } })
+    .then(docs => {
+      console.log(docs);
+    })
+    .catch(err => {
+      console.error(err);
+    })
+    .finally(() => {
+      db.close();
+    });
 
 /*
-19. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que NO pertanyen a Staten Island, Queens, Bronx o Brooklyn.
 20. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que aconsegueixin una nota menor que 10.
 21. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que preparen marisc ('seafood') excepte si són 'American ', 'Chinese' o el name del restaurant comença amb lletres 'Wil'.
 22. Escriu una consulta per trobar el restaurant_id, name i grades per a aquells restaurants que aconsegueixin un grade de "A" i un score d'11 amb un ISODate "2014-08-11T00:00:00Z".
