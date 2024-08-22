@@ -360,11 +360,27 @@ const restaurants = db.get('Restaurants');
 
 
 /* 27. Write a query to organize restaurants by cuisine name in ascending order and by neighborhood in descending order. */
-restaurants.find({}, {
-  sort: { 
-    "cuisine": 1,
-    "borough": -1
-   }
+// restaurants.find({}, {
+//   sort: { 
+//     "cuisine": 1,
+//     "borough": -1
+//    }
+// })
+// .then(docs => {
+//   console.log(docs);
+// })
+// .catch(err => {
+//   console.error('Query Error:', err);
+// })
+// .finally(() => {
+//   db.close();
+// });
+
+
+/* 28. Write a query to find out if the addresses contain the street. */
+restaurants.find({
+  "address.street": { $exists: true }
+}, {
 })
 .then(docs => {
   console.log(docs);
@@ -377,17 +393,18 @@ restaurants.find({}, {
 });
 
 
+/* 31. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'mon' en algun lloc del seu name. */
+
+
+/* 32. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'Mad' com a primeres tres lletres del seu name. */
 
 /*
 21. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que preparen marisc ('seafood') excepte si són 'American ', 'Chinese' o el name del restaurant comença amb lletres 'Wil'.
 22. Escriu una consulta per trobar el restaurant_id, name i grades per a aquells restaurants que aconsegueixin un grade de "A" i un score d'11 amb un ISODate "2014-08-11T00:00:00Z".
 23. Escriu una consulta per trobar el restaurant_id, name i grades per a aquells restaurants on el 2n element de l'array de graus conté un grade de "A" i un score 9 amb un ISODate "2014-08-11T00:00:00Z".
 24. Escriu una consulta per trobar el restaurant_id, name, adreça i ubicació geogràfica per a aquells restaurants on el segon element de l'array coord conté un valor entre 42 i 52.
-28. Escriu una consulta per saber si les direccions contenen el carrer.
 29. Escriu una consulta que seleccioni tots els documents en la col·lecció de restaurants on els valors del camp coord és de tipus Double.
 30. Escriu una consulta que seleccioni el restaurant_id, name i grade per a aquells restaurants que retornen 0 com a residu després de dividir algun dels seus score per 7.
-31. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'mon' en algun lloc del seu name.
-32. Escriu una consulta per trobar el name de restaurant, borough, longitud, latitud i cuisine per a aquells restaurants que contenen 'Mad' com a primeres tres lletres del seu name.
 
 **Certificaràs el teu nivell 1 si construeixes 17 consultes correctes.**
 
