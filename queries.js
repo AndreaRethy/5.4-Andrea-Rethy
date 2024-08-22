@@ -181,9 +181,24 @@ const restaurants = db.get('Restaurants');
 //  });
 
 
+/* 13. Write a query to find restaurants that do not prepare 'American' food, have an 'A' grade and do not belong to Brooklyn. The document should be displayed according to cuisine in descending order. */
+  restaurants.find({
+    "borough": { $not: /Brooklyn/i },
+    "grades.grade": 'A',
+    "cuisine": { $not: /American/i } 
+ })
+ .then(docs => {
+   console.log(docs);
+ })
+ .catch(err => {
+   console.error(err);
+ })
+ .finally(() => {
+   db.close();
+ });
+
 
 /*
-13. Escriu una consulta per trobar els restaurants que no preparen menjar 'American ', tenen alguna nota 'A' i no pertanyen a Brooklyn. S'ha de mostrar el document segons la cuisine en ordre descendent.
 14. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'Wil' en les tres primeres lletres en el seu nom.
 15. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'ces' en les últimes tres lletres en el seu nom.
     a) Escriu una consulta per mostrar tots els documents en la col·lecció Restaurants.
