@@ -182,24 +182,42 @@ const restaurants = db.get('Restaurants');
 
 
 /* 13. Write a query to find restaurants that do not prepare 'American' food, have an 'A' grade and do not belong to Brooklyn. The document should be displayed according to cuisine in descending order. */
-  restaurants.find({
-    "borough": { $not: /Brooklyn/i },
-    "grades.grade": 'A',
-    "cuisine": { $not: /American/i } 
- })
- .then(docs => {
-   console.log(docs);
- })
- .catch(err => {
-   console.error(err);
- })
- .finally(() => {
-   db.close();
- });
+//   restaurants.find({
+//     "borough": { $not: /Brooklyn/i },
+//     "grades.grade": 'A',
+//     "cuisine": { $not: /American/i } 
+//  })
+//  .then(docs => {
+//    console.log(docs);
+//  })
+//  .catch(err => {
+//    console.error(err);
+//  })
+//  .finally(() => {
+//    db.close();
+//  });
+
+
+/* 14. Write a query to find the restaurant_id, name, borough, and cuisine for those restaurants that contain 'Wil' in the first three letters of their name. */
+restaurants.find({
+  "name": { $regex: /^Wil/ }
+}, { fields: { 
+    restaurant_id: 1, 
+    name: 1, 
+    borough: 1, 
+    cuisine: 1 } })
+  .then(docs => {
+    console.log(docs);
+  })
+  .catch(err => {
+    console.error(err);
+  })
+  .finally(() => {
+    db.close();
+  });
 
 
 /*
-14. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'Wil' en les tres primeres lletres en el seu nom.
 15. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'ces' en les últimes tres lletres en el seu nom.
     a) Escriu una consulta per mostrar tots els documents en la col·lecció Restaurants.
 16. Escriu una consulta per trobar el restaurant_id, name, borough i cuisine per a aquells restaurants que contenen 'Reg' en qualsevol lloc del seu nom.
