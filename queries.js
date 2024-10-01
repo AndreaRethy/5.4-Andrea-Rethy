@@ -121,7 +121,13 @@ restaurants.find({ borough: 'Bronx'}, { limit: 5, skip: 5 } )
 
 
 /* 9. Write a query to find the restaurants that have a score greater than 80 but less than 100. */
-  restaurants.find({ "grades.score": { $gt: 80, $lt: 100 } })
+restaurants.find({
+  "grades": {
+    $elemMatch: {
+      score: { $gt: 80, $lt: 100 }
+    }
+  }
+})
   .then(docs => {
     console.log(docs);
   })
